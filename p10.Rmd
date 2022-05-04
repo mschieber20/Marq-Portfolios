@@ -1,9 +1,6 @@
 ---
 title: "Examine shared variance between main study predictors" 
 ---
-
-> The projects should be numbered consecutively (i.e., in the order in which you began them), and should include for each project a description of the goal, the product (computer program, hand graph, computer graph, etc.), the data, and some interpretation. Reports must be reproducible and of high quality in terms of writing, grammar, presentation, etc.
-
 ###Goal: I wanted to examien the shared variance between several of my study's main IVs predicting number of positive aspects.
 
 ###Product: Multiple regression model
