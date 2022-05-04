@@ -2,12 +2,13 @@
 title: "Testing confirmatory hypothesis"
 ---
 
-> The projects should be numbered consecutively (i.e., in the order in which you began them), and should include for each project a description of the goal, the product (computer program, hand graph, computer graph, etc.), the data, and some interpretation. Reports must be reproducible and of high quality in terms of writing, grammar, presentation, etc.
+###Goal: Test hypothesis 3 that positive aspects predict positive mood controlling for baseline mood and post situation descritpion mood.
 
-###Goal: 
-###Product:
-###Data: 
-###Interpretation:
+###Product: Simple linear regression
+
+###Data: Study 2 data
+
+###Interpretation: Hypothesis 3 was significant! This means that how positive people feel after listing aspects of a COVID related situation is predicted by the number of positive asepcts they list controlling for how positive they felt walking into the survey (baseline) and how positive they felt after describing a COVID related situation.
 
 ```{r}
 library(tidyverse)
@@ -15,6 +16,10 @@ library(tidymodels)
 library(openintro)
 library(broom)
 library(MASS)
+```
+
+```{r}
+data <- readr::read_csv("Data.csv")
 ```
 
 ```{r Positivity}

@@ -2,12 +2,13 @@
 title: "Testing additional predictors of DV"
 ---
 
-> The projects should be numbered consecutively (i.e., in the order in which you began them), and should include for each project a description of the goal, the product (computer program, hand graph, computer graph, etc.), the data, and some interpretation. Reports must be reproducible and of high quality in terms of writing, grammar, presentation, etc.
-
 ###Goal: Test the hypothesis that positivity, extraversion and optimism are significant predictors of positive aspects.
-###Product: 
-###Data: 
-###Interpretation:
+
+###Product: Three simple regressions.
+
+###Data: Study 2 data from thesis.
+
+###Interpretation: They are all significant predictors.
 
 ```{r}
 library(tidyverse)
@@ -15,6 +16,10 @@ library(tidymodels)
 library(openintro)
 library(broom)
 library(MASS)
+```
+
+```{r}
+data <- readr::read_csv("Data.csv")
 ```
 
 ```{r Positivity}

@@ -11,9 +11,9 @@
 
 
 
-<title>Portfolio 2</title>
+<title>Positivity</title>
 
-<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -293,18 +293,47 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Portfolio 2</h1>
+<h1 class="title toc-ignore">Positivity</h1>
 
 </div>
 
 
-<blockquote>
-<p>The projects should be numbered consecutively (i.e., in the order in
-which you began them), and should include for each project a description
-of the goal, the product (computer program, hand graph, computer graph,
-etc.), the data, and some interpretation. Reports must be reproducible
-and of high quality in terms of writing, grammar, presentation, etc.</p>
-</blockquote>
+<p>###Goal: Visualize relationship between positivity and number of
+positive aspects people identified of their stressor.</p>
+<p>###Product: Scatterplot graph with line</p>
+<p>###Data: Data was collected in prolific for study 2 of thesis
+project.</p>
+<p>###Interpretation: There is a positive relationship between people’s
+positivity and the number of positive aspects they identify of their
+stressors.</p>
+<pre class="r"><code>library(tidyverse) </code></pre>
+<pre class="r"><code>data &lt;- readr::read_csv(&quot;Data.csv&quot;)</code></pre>
+<pre><code>## Warning: One or more parsing issues, see `problems()` for details</code></pre>
+<pre><code>## Rows: 447 Columns: 158
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (19): Durationinseconds, ResponseId, Age, Gender, HL, Race, Race_5_TEXT...
+## dbl (139): BER_P, BER_N, PSE_P, PSE_N, A1_P, A1_N, A2_P, A2_N, A3_P, A3_N, A...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>ggplot(data, aes(x = TotalP, y = Positivity)) +
+  geom_dotplot(binaxis = data)+
+  geom_jitter()+
+  geom_smooth(method = lm, color = &quot;blue&quot;, se = FALSE)+
+  labs(title = &quot;Relationship Between Positivity and Positive Aspects&quot;, y = &quot;Positivity&quot; , x = &quot;Number of Positive Aspects&quot;)</code></pre>
+<pre><code>## Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.</code></pre>
+<pre><code>## Warning: Removed 7 rows containing non-finite values (stat_bindot).</code></pre>
+<pre><code>## Warning in if (binaxis == &quot;x&quot;) {: the condition has length &gt; 1 and only the
+## first element will be used</code></pre>
+<pre><code>## Warning in if (binaxis == &quot;y&quot;) {: the condition has length &gt; 1 and only the
+## first element will be used</code></pre>
+<pre><code>## Warning: Computation failed in `stat_bindot()`:
+## object &#39;values&#39; not found</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: Removed 8 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 8 rows containing missing values (geom_point).</code></pre>
+<p><img src="p02_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 
 
 

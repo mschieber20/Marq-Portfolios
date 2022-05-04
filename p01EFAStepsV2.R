@@ -1,3 +1,10 @@
+#title: "Exploratory factor analysis for study 1"
+
+###Goal: Derive a factor structure for the Dialectical Beliefs Scale (consists of 3 subscales)
+###Product: Final DES consisted of three factors and 11 items total
+###Data: Data was collected in prolific 
+###Interpretation: It appears that the intended three factor structure was maintained!
+
 install.packages("psych")
 library(psych)
 
@@ -10,7 +17,7 @@ library(GPArotation)
 setwd("/Volumes/labshare/Experiments/DEAR /Dialectical Beliefs Studies/Dialectical Emotions Scale Validation Data")
 #setwd("C:/Users/marqschieber/Library/Mobile Documents/com~apple~CloudDocs/Wake Forest Psychology/Waugh Research/DEAR Data /Dialectical Emotions Scale Validation Data/DES validation data.sav")
 
-## read in posdistract data from 206 subjects for EFA
+## read in  data from 187 subjects for EFA
 
 dat <- read.csv('DES_EFA_3:2:22.csv')
 

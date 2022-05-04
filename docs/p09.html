@@ -11,9 +11,9 @@
 
 
 
-<title>Portfolio 9</title>
+<title>Positivty and Resilience</title>
 
-<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -293,18 +293,54 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Portfolio 9</h1>
+<h1 class="title toc-ignore">Positivty and Resilience</h1>
 
 </div>
 
 
-<blockquote>
-<p>The projects should be numbered consecutively (i.e., in the order in
-which you began them), and should include for each project a description
-of the goal, the product (computer program, hand graph, computer graph,
-etc.), the data, and some interpretation. Reports must be reproducible
-and of high quality in terms of writing, grammar, presentation, etc.</p>
-</blockquote>
+<p>###Goal: Positivity turned out to be the biggest predictor of my
+primary DV. I wanted to see whether there was a relationship between
+positivity and resilience.</p>
+<p>###Product: Scatterplot</p>
+<p>###Data: Study 2 data</p>
+<p>###Interpretation: People who are more positive are also more
+resilient!</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.6     ✓ dplyr   1.0.8
+## ✓ tidyr   1.2.0     ✓ stringr 1.4.0
+## ✓ readr   2.1.2     ✓ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>data &lt;- readr::read_csv(&quot;Data.csv&quot;)</code></pre>
+<pre><code>## Warning: One or more parsing issues, see `problems()` for details</code></pre>
+<pre><code>## Rows: 447 Columns: 158
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (19): Durationinseconds, ResponseId, Age, Gender, HL, Race, Race_5_TEXT...
+## dbl (139): BER_P, BER_N, PSE_P, PSE_N, A1_P, A1_N, A2_P, A2_N, A3_P, A3_N, A...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>ggplot(data, aes(x = Resilience, y = Positivity)) +
+  geom_dotplot(binaxis = data)+
+  geom_jitter()+
+  geom_smooth(method = lm, color = &quot;darkred&quot;, se = FALSE)+
+  labs(title = &quot;Is Resilience Related to Positivity&quot;, y = &quot;Resilience&quot; , x = &quot;Number of Positive Aspects&quot;)</code></pre>
+<pre><code>## Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.</code></pre>
+<pre><code>## Warning: Removed 6 rows containing non-finite values (stat_bindot).</code></pre>
+<pre><code>## Warning in if (binaxis == &quot;x&quot;) {: the condition has length &gt; 1 and only the
+## first element will be used</code></pre>
+<pre><code>## Warning in if (binaxis == &quot;y&quot;) {: the condition has length &gt; 1 and only the
+## first element will be used</code></pre>
+<pre><code>## Warning: Computation failed in `stat_bindot()`:
+## object &#39;values&#39; not found</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: Removed 6 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 6 rows containing missing values (geom_point).</code></pre>
+<p><img src="p09_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 
 
 

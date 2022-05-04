@@ -1,3 +1,9 @@
+#title: "CFA for scale developed in study 1"
+###Goal: Confirm factor structure from study 1 EFA
+###Product: Confirmatory factor analysis
+###Data: Study 2 data
+###Interpretation: All items loaded appropriately and 3 factor structure was found.
+
 install.packages("psych")
 library(psych)
 
@@ -10,7 +16,7 @@ library(GPArotation)
 #setwd("/Volumes/labshare/Experiments/DEAR /Dialectical Beliefs Studies/Thesis big study")
 #setwd("C:/Users/marqschieber/Library/Mobile Documents/com~apple~CloudDocs/Wake Forest Psychology/Waugh Research/DEAR Data /Dialectical Emotions Scale Validation Data/DES validation data.sav")
 
-## read in posdistract data from 447 subjects for CFA
+## read indata from 447 subjects for CFA
 
 dit <- read.csv("Data.csv")
 

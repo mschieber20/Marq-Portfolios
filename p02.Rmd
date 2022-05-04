@@ -2,12 +2,13 @@
 title: "Positivity"
 ---
 
-> The projects should be numbered consecutively (i.e., in the order in which you began them), and should include for each project a description of the goal, the product (computer program, hand graph, computer graph, etc.), the data, and some interpretation. Reports must be reproducible and of high quality in terms of writing, grammar, presentation, etc.
+###Goal: Visualize relationship between positivity and number of positive aspects people identified of their stressor.
 
-###Goal: 
-###Product:
-###Data: 
-###Interpretation:
+###Product: Scatterplot graph with line
+
+###Data: Data was collected in prolific for study 2 of thesis project.
+
+###Interpretation: There is a positive relationship between people's positivity and the number of positive aspects they identify of their stressors.
 
 ```{r load-packages, message = FALSE}
 library(tidyverse) 

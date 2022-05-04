@@ -2,15 +2,20 @@
 title: "Positivty and Resilience"
 ---
 
-> The projects should be numbered consecutively (i.e., in the order in which you began them), and should include for each project a description of the goal, the product (computer program, hand graph, computer graph, etc.), the data, and some interpretation. Reports must be reproducible and of high quality in terms of writing, grammar, presentation, etc.
+###Goal: Positivity turned out to be the biggest predictor of my primary DV. I wanted to see whether there was a relationship between positivity and resilience.
 
-###Goal: 
-###Product:
-###Data: 
-###Interpretation:
+###Product: Scatterplot
+
+###Data: Study 2 data
+
+###Interpretation: People who are more positive are also more resilient!
 
 ```{r}
 library(tidyverse)
+```
+
+```{r}
+data <- readr::read_csv("Data.csv")
 ```
 
 ```{r}

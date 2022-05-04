@@ -11,9 +11,9 @@
 
 
 
-<title>Portfolio 5</title>
+<title>Testing additional predictors of DV</title>
 
-<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -293,18 +293,134 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Portfolio 5</h1>
+<h1 class="title toc-ignore">Testing additional predictors of DV</h1>
 
 </div>
 
 
-<blockquote>
-<p>The projects should be numbered consecutively (i.e., in the order in
-which you began them), and should include for each project a description
-of the goal, the product (computer program, hand graph, computer graph,
-etc.), the data, and some interpretation. Reports must be reproducible
-and of high quality in terms of writing, grammar, presentation, etc.</p>
-</blockquote>
+<p>###Goal: Test the hypothesis that positivity, extraversion and
+optimism are significant predictors of positive aspects.</p>
+<p>###Product: Three simple regressions.</p>
+<p>###Data: Study 2 data from thesis.</p>
+<p>###Interpretation: They are all significant predictors.</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.6     ✓ dplyr   1.0.8
+## ✓ tidyr   1.2.0     ✓ stringr 1.4.0
+## ✓ readr   2.1.2     ✓ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(tidymodels)</code></pre>
+<pre><code>## ── Attaching packages ────────────────────────────────────── tidymodels 0.2.0 ──</code></pre>
+<pre><code>## ✓ broom        0.7.12     ✓ rsample      0.1.1 
+## ✓ dials        0.1.1      ✓ tune         0.2.0 
+## ✓ infer        1.0.0      ✓ workflows    0.2.6 
+## ✓ modeldata    0.1.1      ✓ workflowsets 0.2.1 
+## ✓ parsnip      0.2.1      ✓ yardstick    0.0.9 
+## ✓ recipes      0.2.0</code></pre>
+<pre><code>## ── Conflicts ───────────────────────────────────────── tidymodels_conflicts() ──
+## x scales::discard() masks purrr::discard()
+## x dplyr::filter()   masks stats::filter()
+## x recipes::fixed()  masks stringr::fixed()
+## x dplyr::lag()      masks stats::lag()
+## x yardstick::spec() masks readr::spec()
+## x recipes::step()   masks stats::step()
+## • Search for functions across packages at https://www.tidymodels.org/find/</code></pre>
+<pre class="r"><code>library(openintro)</code></pre>
+<pre><code>## Loading required package: airports</code></pre>
+<pre><code>## Loading required package: cherryblossom</code></pre>
+<pre><code>## Loading required package: usdata</code></pre>
+<pre class="r"><code>library(broom)
+library(MASS)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:openintro&#39;:
+## 
+##     housing, mammals</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     select</code></pre>
+<pre class="r"><code>data &lt;- readr::read_csv(&quot;Data.csv&quot;)</code></pre>
+<pre><code>## Warning: One or more parsing issues, see `problems()` for details</code></pre>
+<pre><code>## Rows: 447 Columns: 158
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (19): Durationinseconds, ResponseId, Age, Gender, HL, Race, Race_5_TEXT...
+## dbl (139): BER_P, BER_N, PSE_P, PSE_N, A1_P, A1_N, A2_P, A2_N, A3_P, A3_N, A...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>m_Positivity = lm(TotalP ~ Positivity , data=data) 
+
+summary(m_Positivity)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = TotalP ~ Positivity, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.4664 -1.2467 -0.4044  0.9619  4.8154 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 0.415552   0.281614   1.476    0.141    
+## Positivity  0.036623   0.007556   4.847 1.75e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.675 on 437 degrees of freedom
+##   (8 observations deleted due to missingness)
+## Multiple R-squared:  0.05102,    Adjusted R-squared:  0.04884 
+## F-statistic: 23.49 on 1 and 437 DF,  p-value: 1.745e-06</code></pre>
+<p>#Positivty is significant</p>
+<pre class="r"><code>m_Optimism = lm(TotalP ~ Optimism, data=data) 
+
+summary(m_Optimism)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = TotalP ~ Optimism, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.3854 -1.3551 -0.4046  1.0267  4.5762 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.73698    0.25686   2.869  0.00431 ** 
+## Optimism     0.06868    0.01684   4.080 5.36e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.693 on 438 degrees of freedom
+##   (7 observations deleted due to missingness)
+## Multiple R-squared:  0.03661,    Adjusted R-squared:  0.03441 
+## F-statistic: 16.64 on 1 and 438 DF,  p-value: 5.36e-05</code></pre>
+<p>#Optimism is Significant</p>
+<pre class="r"><code>m_Extraversion = lm(TotalP ~ Extraversion, data=data) 
+
+summary(m_Extraversion)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = TotalP ~ Extraversion, data = data)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -2.221 -1.552 -0.552  1.192  4.507 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  1.040600   0.303426   3.430 0.000662 ***
+## Extraversion 0.019670   0.008268   2.379 0.017785 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.713 on 437 degrees of freedom
+##   (8 observations deleted due to missingness)
+## Multiple R-squared:  0.01279,    Adjusted R-squared:  0.01053 
+## F-statistic:  5.66 on 1 and 437 DF,  p-value: 0.01779</code></pre>
+<p>#Extraversion is significant</p>
 
 
 

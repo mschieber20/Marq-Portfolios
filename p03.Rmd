@@ -2,12 +2,13 @@
 title: "The Power of Compound Interest"
 ---
 
-> The projects should be numbered consecutively (i.e., in the order in which you began them), and should include for each project a description of the goal, the product (computer program, hand graph, computer graph, etc.), the data, and some interpretation. Reports must be reproducible and of high quality in terms of writing, grammar, presentation, etc.
+###Goal: See the power of compound interest over time.
 
-###Goal: 
-###Product:
-###Data: 
-###Interpretation:
+###Product: Line graph 
+
+###Data: Data was self generated in excel.
+
+###Interpretation: Comparing two people. Person A saves 1000 a month under their mattress and Person B saves 100 a month and puts it into a mutual fund earning 10% annually. Although Person A benefits from a higher savings rate there reaches a point where person B takes off. If both people were saving the same amount, the power of compound interest would be even more apparent. As it stands, this grpah shows that even with a lower savings rate, investing your money will net you more in the long run.
 
 ```{r load-packages, message = FALSE}
 library(tidyverse)

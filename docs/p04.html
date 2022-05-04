@@ -11,9 +11,9 @@
 
 
 
-<title>Portfolio 4</title>
+<title>Thesis Calculations for DES subscales</title>
 
-<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -293,18 +293,213 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Portfolio 4</h1>
+<h1 class="title toc-ignore">Thesis Calculations for DES subscales</h1>
 
 </div>
 
 
-<blockquote>
-<p>The projects should be numbered consecutively (i.e., in the order in
-which you began them), and should include for each project a description
-of the goal, the product (computer program, hand graph, computer graph,
-etc.), the data, and some interpretation. Reports must be reproducible
-and of high quality in terms of writing, grammar, presentation, etc.</p>
-</blockquote>
+<p>###Goal: Test the hypothesis that the the belief that positive
+emotions can occur in negative situations (PeNS) predicts the number of
+positive aspects people identify. Although not hypotehsized, also tested
+whether the other belief scales could predict number of positive
+aspects.</p>
+<p>###Product: Simple and multiple regression output</p>
+<p>###Data: Data was collected in prolific for study 2</p>
+<p>###Interpretation: PeNS was not a significant predictor. NePS was
+significant by itself. After further investigation…PeNS is a significant
+predictor of positive aspects when including NePS, because NePS is a
+suppressor.</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.6     ✓ dplyr   1.0.8
+## ✓ tidyr   1.2.0     ✓ stringr 1.4.0
+## ✓ readr   2.1.2     ✓ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(tidymodels)</code></pre>
+<pre><code>## ── Attaching packages ────────────────────────────────────── tidymodels 0.2.0 ──</code></pre>
+<pre><code>## ✓ broom        0.7.12     ✓ rsample      0.1.1 
+## ✓ dials        0.1.1      ✓ tune         0.2.0 
+## ✓ infer        1.0.0      ✓ workflows    0.2.6 
+## ✓ modeldata    0.1.1      ✓ workflowsets 0.2.1 
+## ✓ parsnip      0.2.1      ✓ yardstick    0.0.9 
+## ✓ recipes      0.2.0</code></pre>
+<pre><code>## ── Conflicts ───────────────────────────────────────── tidymodels_conflicts() ──
+## x scales::discard() masks purrr::discard()
+## x dplyr::filter()   masks stats::filter()
+## x recipes::fixed()  masks stringr::fixed()
+## x dplyr::lag()      masks stats::lag()
+## x yardstick::spec() masks readr::spec()
+## x recipes::step()   masks stats::step()
+## • Use suppressPackageStartupMessages() to eliminate package startup messages</code></pre>
+<pre class="r"><code>library(openintro)</code></pre>
+<pre><code>## Loading required package: airports</code></pre>
+<pre><code>## Loading required package: cherryblossom</code></pre>
+<pre><code>## Loading required package: usdata</code></pre>
+<pre class="r"><code>library(broom)
+library(MASS)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:openintro&#39;:
+## 
+##     housing, mammals</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     select</code></pre>
+<pre class="r"><code>data &lt;- readr::read_csv(&quot;Data.csv&quot;)</code></pre>
+<pre><code>## Warning: One or more parsing issues, see `problems()` for details</code></pre>
+<pre><code>## Rows: 447 Columns: 158
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (19): Durationinseconds, ResponseId, Age, Gender, HL, Race, Race_5_TEXT...
+## dbl (139): BER_P, BER_N, PSE_P, PSE_N, A1_P, A1_N, A2_P, A2_N, A3_P, A3_N, A...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>m_PNS = lm(TotalP ~ DES_PNS, data=data) 
+
+summary(m_PNS)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = TotalP ~ DES_PNS, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.7512 -1.7051 -0.7166  1.2719  4.3353 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept) 1.589857   0.533172   2.982  0.00302 **
+## DES_PNS     0.005761   0.022561   0.255  0.79858   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.719 on 437 degrees of freedom
+##   (8 observations deleted due to missingness)
+## Multiple R-squared:  0.0001492,  Adjusted R-squared:  -0.002139 
+## F-statistic: 0.0652 on 1 and 437 DF,  p-value: 0.7986</code></pre>
+<p>###Not significant</p>
+<pre class="r"><code>m_NPS = lm(TotalP ~ DES_NPS, data=data) 
+
+summary(m_NPS)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = TotalP ~ DES_NPS, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.7368 -1.6294 -0.4817  1.2599  4.5183 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  3.03212    0.50744   5.975 4.77e-09 ***
+## DES_NPS     -0.07383    0.02828  -2.611  0.00934 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.706 on 437 degrees of freedom
+##   (8 observations deleted due to missingness)
+## Multiple R-squared:  0.01536,    Adjusted R-squared:  0.01311 
+## F-statistic: 6.817 on 1 and 437 DF,  p-value: 0.009339</code></pre>
+<p>###Significant</p>
+<pre class="r"><code>m_PeNe = lm(TotalP ~ DES_CPN, data=data) 
+
+summary(m_PeNe)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = TotalP ~ DES_CPN, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.3463 -1.6163 -0.6163  1.2620  4.3837 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  2.46796    0.57035   4.327 1.87e-05 ***
+## DES_CPN     -0.03042    0.02309  -1.317    0.188    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.716 on 437 degrees of freedom
+##   (8 observations deleted due to missingness)
+## Multiple R-squared:  0.003956,   Adjusted R-squared:  0.001676 
+## F-statistic: 1.735 on 1 and 437 DF,  p-value: 0.1884</code></pre>
+<p>###Not significant</p>
+<pre class="r"><code>m_DES = lm(TotalP ~ DES_CPN + DES_NPS + DES_PNS, data=data) 
+
+summary(m_DES)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = TotalP ~ DES_CPN + DES_NPS + DES_PNS, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.8119 -1.5923 -0.5453  1.2680  4.3755 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  2.3769286  0.5982925   3.973 8.31e-05 ***
+## DES_CPN      0.0007575  0.0393719   0.019  0.98466    
+## DES_NPS     -0.1297354  0.0448138  -2.895  0.00398 ** 
+## DES_PNS      0.0696733  0.0316404   2.202  0.02819 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.698 on 435 degrees of freedom
+##   (8 observations deleted due to missingness)
+## Multiple R-squared:  0.0287, Adjusted R-squared:  0.022 
+## F-statistic: 4.284 on 3 and 435 DF,  p-value: 0.005381</code></pre>
+<p>###Interesting…PeNS is now significant..why?</p>
+<pre class="r"><code>m_PeNePeNS = lm(TotalP ~ DES_CPN + DES_PNS, data=data)
+
+summary(m_PeNePeNS)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = TotalP ~ DES_CPN + DES_PNS, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.3234 -1.6224 -0.5994  1.2128  4.4285 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  2.16530    0.59882   3.616 0.000334 ***
+## DES_CPN     -0.06664    0.03202  -2.081 0.038007 *  
+## DES_PNS      0.05088    0.03123   1.629 0.103969    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.713 on 436 degrees of freedom
+##   (8 observations deleted due to missingness)
+## Multiple R-squared:  0.009984,   Adjusted R-squared:  0.005442 
+## F-statistic: 2.198 on 2 and 436 DF,  p-value: 0.1122</code></pre>
+<p>###It’s not Pe+NE that’s suppressing PeNS</p>
+<pre class="r"><code>m_PeNSNePS = lm(TotalP ~ DES_NPS + DES_PNS, data=data)
+
+summary(m_PeNSNePS)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = TotalP ~ DES_NPS + DES_PNS, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.8216 -1.5928 -0.5442  1.2673  4.3753 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  2.38035    0.57057   4.172 3.65e-05 ***
+## DES_NPS     -0.12923    0.03610  -3.580 0.000383 ***
+## DES_PNS      0.06993    0.02858   2.447 0.014812 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.696 on 436 degrees of freedom
+##   (8 observations deleted due to missingness)
+## Multiple R-squared:  0.0287, Adjusted R-squared:  0.02424 
+## F-statistic: 6.441 on 2 and 436 DF,  p-value: 0.001751</code></pre>
+<p>###It looks like NePS is suppressing some part of PeNS</p>
 
 
 

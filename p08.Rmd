@@ -2,12 +2,13 @@
 title: "Federal Deficit"
 ---
 
-> The projects should be numbered consecutively (i.e., in the order in which you began them), and should include for each project a description of the goal, the product (computer program, hand graph, computer graph, etc.), the data, and some interpretation. Reports must be reproducible and of high quality in terms of writing, grammar, presentation, etc.
+###Goal: Visualize federal deficit and surplus in the 21st century.
 
-###Goal: 
-###Product:
-###Data: 
-###Interpretation:
+###Product: Bar graph
+
+###Data: Federal budget info is publicly available.
+
+###Interpretation: Last time the US gov. was making money was in 2001.....
 
 ```{r}
 library(tidyverse)

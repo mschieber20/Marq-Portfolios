@@ -11,9 +11,9 @@
 
 
 
-<title>Portfolio 6</title>
+<title>Testing confirmatory hypothesis</title>
 
-<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -293,18 +293,94 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Portfolio 6</h1>
+<h1 class="title toc-ignore">Testing confirmatory hypothesis</h1>
 
 </div>
 
 
-<blockquote>
-<p>The projects should be numbered consecutively (i.e., in the order in
-which you began them), and should include for each project a description
-of the goal, the product (computer program, hand graph, computer graph,
-etc.), the data, and some interpretation. Reports must be reproducible
-and of high quality in terms of writing, grammar, presentation, etc.</p>
-</blockquote>
+<p>###Goal: Test hypothesis 3 that positive aspects predict positive
+mood controlling for baseline mood and post situation descritpion
+mood.</p>
+<p>###Product: Simple linear regression</p>
+<p>###Data: Study 2 data</p>
+<p>###Interpretation: Hypothesis 3 was significant! This means that how
+positive people feel after listing aspects of a COVID related situation
+is predicted by the number of positive asepcts they list controlling for
+how positive they felt walking into the survey (baseline) and how
+positive they felt after describing a COVID related situation.</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.6     ✓ dplyr   1.0.8
+## ✓ tidyr   1.2.0     ✓ stringr 1.4.0
+## ✓ readr   2.1.2     ✓ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(tidymodels)</code></pre>
+<pre><code>## ── Attaching packages ────────────────────────────────────── tidymodels 0.2.0 ──</code></pre>
+<pre><code>## ✓ broom        0.7.12     ✓ rsample      0.1.1 
+## ✓ dials        0.1.1      ✓ tune         0.2.0 
+## ✓ infer        1.0.0      ✓ workflows    0.2.6 
+## ✓ modeldata    0.1.1      ✓ workflowsets 0.2.1 
+## ✓ parsnip      0.2.1      ✓ yardstick    0.0.9 
+## ✓ recipes      0.2.0</code></pre>
+<pre><code>## ── Conflicts ───────────────────────────────────────── tidymodels_conflicts() ──
+## x scales::discard() masks purrr::discard()
+## x dplyr::filter()   masks stats::filter()
+## x recipes::fixed()  masks stringr::fixed()
+## x dplyr::lag()      masks stats::lag()
+## x yardstick::spec() masks readr::spec()
+## x recipes::step()   masks stats::step()
+## • Dig deeper into tidy modeling with R at https://www.tmwr.org</code></pre>
+<pre class="r"><code>library(openintro)</code></pre>
+<pre><code>## Loading required package: airports</code></pre>
+<pre><code>## Loading required package: cherryblossom</code></pre>
+<pre><code>## Loading required package: usdata</code></pre>
+<pre class="r"><code>library(broom)
+library(MASS)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:openintro&#39;:
+## 
+##     housing, mammals</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     select</code></pre>
+<pre class="r"><code>data &lt;- readr::read_csv(&quot;Data.csv&quot;)</code></pre>
+<pre><code>## Warning: One or more parsing issues, see `problems()` for details</code></pre>
+<pre><code>## Rows: 447 Columns: 158
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (19): Durationinseconds, ResponseId, Age, Gender, HL, Race, Race_5_TEXT...
+## dbl (139): BER_P, BER_N, PSE_P, PSE_N, A1_P, A1_N, A2_P, A2_N, A3_P, A3_N, A...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>m_Hypo3 = lm(PRE_P~ TotalP + PSE_P + BER_P , data=data) 
+
+summary(m_Hypo3)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = PRE_P ~ TotalP + PSE_P + BER_P, data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.5258 -0.5657  0.1553  0.6938  4.0901 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -0.13044    0.15471  -0.843 0.399628    
+## TotalP       0.25772    0.03496   7.372 8.51e-13 ***
+## PSE_P        0.71196    0.04356  16.344  &lt; 2e-16 ***
+## BER_P        0.17074    0.04436   3.849 0.000136 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.16 on 436 degrees of freedom
+##   (7 observations deleted due to missingness)
+## Multiple R-squared:  0.7999, Adjusted R-squared:  0.7986 
+## F-statistic: 581.1 on 3 and 436 DF,  p-value: &lt; 2.2e-16</code></pre>
 
 
 

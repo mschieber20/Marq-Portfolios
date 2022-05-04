@@ -11,9 +11,9 @@
 
 
 
-<title>Portfolio 8</title>
+<title>Federal Deficit</title>
 
-<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -293,18 +293,39 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Portfolio 8</h1>
+<h1 class="title toc-ignore">Federal Deficit</h1>
 
 </div>
 
 
-<blockquote>
-<p>The projects should be numbered consecutively (i.e., in the order in
-which you began them), and should include for each project a description
-of the goal, the product (computer program, hand graph, computer graph,
-etc.), the data, and some interpretation. Reports must be reproducible
-and of high quality in terms of writing, grammar, presentation, etc.</p>
-</blockquote>
+<p>###Goal: Visualize federal deficit and surplus in the 21st
+century.</p>
+<p>###Product: Bar graph</p>
+<p>###Data: Federal budget info is publicly available.</p>
+<p>###Interpretation: Last time the US gov. was making money was in
+2001…..</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.6     ✓ dplyr   1.0.8
+## ✓ tidyr   1.2.0     ✓ stringr 1.4.0
+## ✓ readr   2.1.2     ✓ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>deficit &lt;- readr::read_csv(&quot;federal_deficit_trends.csv&quot;)</code></pre>
+<pre><code>## Rows: 21 Columns: 4
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (2): source_url, source_url_name
+## dbl (2): fiscal_year, federal_deficit
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>ggplot(deficit, aes(x = fiscal_year, y = federal_deficit)) +
+  geom_col(fill = &quot;red&quot;)+
+  labs(title = &quot;Fiscal Year&quot;, y = &quot;Federal Deficit&quot; , x = &quot;Year&quot;)</code></pre>
+<p><img src="p08_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 
 
 

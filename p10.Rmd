@@ -1,13 +1,16 @@
 ---
-title: "What is the best predictor of positive aspects" 
+title: "Examine shared variance between main study predictors" 
 ---
 
 > The projects should be numbered consecutively (i.e., in the order in which you began them), and should include for each project a description of the goal, the product (computer program, hand graph, computer graph, etc.), the data, and some interpretation. Reports must be reproducible and of high quality in terms of writing, grammar, presentation, etc.
 
-###Goal: 
-###Product:
-###Data: 
-###Interpretation:
+###Goal: I wanted to examien the shared variance between several of my study's main IVs predicting number of positive aspects.
+
+###Product: Multiple regression model
+
+###Data: Study 2 data
+
+###Interpretation: Only positivity and the belief that negative emotions can occur in positive situations accounted for a significant amount of the variance predicting positive aspects.
 
 ```{r}
 library(tidyverse)
@@ -15,4 +18,18 @@ library(tidymodels)
 library(openintro)
 library(broom)
 library(MASS)
+
 ```
+
+
+```{r}
+data <- readr::read_csv("Data.csv")
+```
+
+```{r}
+m_BIG = lm(TotalP ~ Positivity + Extraversion + Resilience + DES_CPN + DES_NPS + DES_PNS, data=data)
+
+summary(m_BIG)
+
+```
+

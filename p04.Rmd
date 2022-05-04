@@ -2,12 +2,13 @@
 title: "Thesis Calculations for DES subscales"
 ---
 
-> The projects should be numbered consecutively (i.e., in the order in which you began them), and should include for each project a description of the goal, the product (computer program, hand graph, computer graph, etc.), the data, and some interpretation. Reports must be reproducible and of high quality in terms of writing, grammar, presentation, etc.
+###Goal: Test the hypothesis that the the belief that positive emotions can occur in negative situations (PeNS) predicts the number of positive aspects people identify. Although not hypotehsized, also tested whether the other belief scales could predict number of positive aspects.
 
-###Goal: Test the hypothesis that the belief etc.
-###Product:
-###Data: 
-###Interpretation:
+###Product: Simple and multiple regression output
+
+###Data: Data was collected in prolific for study 2
+
+###Interpretation: PeNS was not a significant predictor. NePS was significant by itself. After further investigation...PeNS is a significant predictor of positive aspects when including NePS, because NePS is a suppressor.
 
 ```{r}
 library(tidyverse)
@@ -16,6 +17,12 @@ library(openintro)
 library(broom)
 library(MASS)
 ```
+
+
+```{r}
+data <- readr::read_csv("Data.csv")
+```
+
 
 ```{r Testing PeNS as a predictor of positive aspects}
 m_PNS = lm(TotalP ~ DES_PNS, data=data) 
