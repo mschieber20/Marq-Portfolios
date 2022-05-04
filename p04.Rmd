@@ -1,5 +1,75 @@
 ---
-title: "Portfolio 4"
+title: "Thesis Calculations for DES subscales"
 ---
 
 > The projects should be numbered consecutively (i.e., in the order in which you began them), and should include for each project a description of the goal, the product (computer program, hand graph, computer graph, etc.), the data, and some interpretation. Reports must be reproducible and of high quality in terms of writing, grammar, presentation, etc.
+
+###Goal: Test the hypothesis that the belief etc.
+###Product:
+###Data: 
+###Interpretation:
+
+```{r}
+library(tidyverse)
+library(tidymodels)
+library(openintro)
+library(broom)
+library(MASS)
+```
+
+```{r Testing PeNS as a predictor of positive aspects}
+m_PNS = lm(TotalP ~ DES_PNS, data=data) 
+
+summary(m_PNS)
+```
+
+###Not significant
+
+```{r Testing NePS as a predictor of positive aspects}
+m_NPS = lm(TotalP ~ DES_NPS, data=data) 
+
+summary(m_NPS)
+```
+
+###Significant
+
+```{r Testing Pe+Ne}
+
+m_PeNe = lm(TotalP ~ DES_CPN, data=data) 
+
+summary(m_PeNe)
+
+```
+
+###Not significant
+
+```{r Testing all of them together}
+
+m_DES = lm(TotalP ~ DES_CPN + DES_NPS + DES_PNS, data=data) 
+
+summary(m_DES)
+
+```
+
+###Interesting...PeNS is now significant..why?
+
+
+```{r Is PePNS significant controlling for Pe+NE?}
+m_PeNePeNS = lm(TotalP ~ DES_CPN + DES_PNS, data=data)
+
+summary(m_PeNePeNS)
+```
+
+###It's not Pe+NE that's suppressing PeNS
+
+
+```{r Is NePS suppressing PeNS?}
+m_PeNSNePS = lm(TotalP ~ DES_NPS + DES_PNS, data=data)
+
+summary(m_PeNSNePS)
+```
+
+###It looks like NePS is suppressing some part of PeNS
+
+
+

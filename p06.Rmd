@@ -1,5 +1,25 @@
 ---
-title: "Portfolio 6"
+title: "Testing confirmatory hypothesis"
 ---
 
 > The projects should be numbered consecutively (i.e., in the order in which you began them), and should include for each project a description of the goal, the product (computer program, hand graph, computer graph, etc.), the data, and some interpretation. Reports must be reproducible and of high quality in terms of writing, grammar, presentation, etc.
+
+###Goal: 
+###Product:
+###Data: 
+###Interpretation:
+
+```{r}
+library(tidyverse)
+library(tidymodels)
+library(openintro)
+library(broom)
+library(MASS)
+```
+
+```{r Positivity}
+m_Hypo3 = lm(PRE_P~ TotalP + PSE_P + BER_P , data=data) 
+
+summary(m_Hypo3)
+```
+

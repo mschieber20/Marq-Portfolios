@@ -1,5 +1,24 @@
 ---
-title: "Portfolio 9"
+title: "Positivty and Resilience"
 ---
 
 > The projects should be numbered consecutively (i.e., in the order in which you began them), and should include for each project a description of the goal, the product (computer program, hand graph, computer graph, etc.), the data, and some interpretation. Reports must be reproducible and of high quality in terms of writing, grammar, presentation, etc.
+
+###Goal: 
+###Product:
+###Data: 
+###Interpretation:
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+ggplot(data, aes(x = Resilience, y = Positivity)) +
+  geom_dotplot(binaxis = data)+
+  geom_jitter()+
+  geom_smooth(method = lm, color = "darkred", se = FALSE)+
+  labs(title = "Is Resilience Related to Positivity", y = "Resilience" , x = "Number of Positive Aspects")
+```
+
+

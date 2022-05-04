@@ -1,5 +1,26 @@
 ---
-title: "Portfolio 8"
+title: "Federal Deficit"
 ---
 
 > The projects should be numbered consecutively (i.e., in the order in which you began them), and should include for each project a description of the goal, the product (computer program, hand graph, computer graph, etc.), the data, and some interpretation. Reports must be reproducible and of high quality in terms of writing, grammar, presentation, etc.
+
+###Goal: 
+###Product:
+###Data: 
+###Interpretation:
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+deficit <- readr::read_csv("federal_deficit_trends.csv")
+```
+
+```{r}
+ggplot(deficit, aes(x = fiscal_year, y = federal_deficit)) +
+  geom_col(fill = "red")+
+  labs(title = "Fiscal Year", y = "Federal Deficit" , x = "Year")
+  
+```
+

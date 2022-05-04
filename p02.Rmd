@@ -1,5 +1,27 @@
 ---
-title: "Portfolio 2"
+title: "Positivity"
 ---
 
 > The projects should be numbered consecutively (i.e., in the order in which you began them), and should include for each project a description of the goal, the product (computer program, hand graph, computer graph, etc.), the data, and some interpretation. Reports must be reproducible and of high quality in terms of writing, grammar, presentation, etc.
+
+###Goal: 
+###Product:
+###Data: 
+###Interpretation:
+
+```{r load-packages, message = FALSE}
+library(tidyverse) 
+```
+
+```{r}
+data <- readr::read_csv("Data.csv")
+```
+
+```{r}
+ggplot(data, aes(x = TotalP, y = Positivity)) +
+  geom_dotplot(binaxis = data)+
+  geom_jitter()+
+  geom_smooth(method = lm, color = "blue", se = FALSE)+
+  labs(title = "Relationship Between Positivity and Positive Aspects", y = "Positivity" , x = "Number of Positive Aspects")
+```
+

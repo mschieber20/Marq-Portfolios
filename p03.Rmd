@@ -1,5 +1,30 @@
 ---
-title: "Portfolio 3"
+title: "The Power of Compound Interest"
 ---
 
 > The projects should be numbered consecutively (i.e., in the order in which you began them), and should include for each project a description of the goal, the product (computer program, hand graph, computer graph, etc.), the data, and some interpretation. Reports must be reproducible and of high quality in terms of writing, grammar, presentation, etc.
+
+###Goal: 
+###Product:
+###Data: 
+###Interpretation:
+
+```{r load-packages, message = FALSE}
+library(tidyverse)
+library(readxl)
+```
+
+```{r}
+Money <- read_excel("Compound interest data.xlsx")
+```
+
+```{r}
+ggplot(Money, aes(x = Year)) + 
+  geom_line(aes(y = No_Interest), color = "darkred") + 
+  geom_line(aes(y = Compound_Interest), color="steelblue", linetype="twodash")+
+  labs(title = "The Effect of Compound Interest", y = "Money" , x = "Years")
+  #scale_color_manual(values = colours)
+  #scale_color_manual(name = 'Saving Type', values = c('No Interest' = 'darkred', 'Compound Interest' = 'steelblue'))
+  #legend(1,95 , legend = c("No Interest" , "Compound Interest") , col = c("darkred" , "steelblue" , lty = 1:2 , cex = .8))
+```
+
