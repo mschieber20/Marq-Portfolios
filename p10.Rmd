@@ -1,7 +1,7 @@
 ---
 title: "Examine shared variance between main study predictors" 
 ---
-###Goal: I wanted to examien the shared variance between several of my study's main IVs predicting number of positive aspects.
+###Goal: I wanted to examine the shared variance between several of my study's main IVs predicting number of positive aspects.
 
 ###Product: Multiple regression model
 
